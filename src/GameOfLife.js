@@ -7,12 +7,25 @@ const numCols = canvas.width / gridSize;
 
 let grid = [];
 
+canvas.addEventListener('mousedown', function(event) {
+    const rect = canvas.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+  
+    const col = Math.floor(x / gridSize);
+    const row = Math.floor(y / gridSize);
+  
+    grid[row][col] = 1 - grid[row][col]; // toggle cell state
+  
+    render();
+});
+
 for (let i = 0; i < numRows; i++) {
-  let row = [];
-  for (let j = 0; j < numCols; j++) {
-    row.push(Math.round(Math.random()));
-  }
-  grid.push(row);
+    let row = [];
+    for (let j = 0; j < numCols; j++) {
+        row.push(Math.round(Math.random()));
+    }
+    grid.push(row);
 }
 
 function render() {

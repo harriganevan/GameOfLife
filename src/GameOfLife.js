@@ -7,6 +7,29 @@ const numCols = canvas.width / gridSize;
 
 let grid = [];
 
+//randomly populate grid
+for (let i = 0; i < numRows; i++) {
+    let row = [];
+    for (let j = 0; j < numCols; j++) {
+        row.push(Math.round(Math.random()));
+    }
+    grid.push(row);
+}
+
+let isRunning = false;
+const startStopButton = document.getElementById('startStopButton');
+startStopButton.addEventListener('click', function() {
+    isRunning = !isRunning; // toggle running state
+
+    if (isRunning) {
+        startStopButton.textContent = 'Stop';
+        update(); // start the loop
+    } else {
+        startStopButton.textContent = 'Start';
+    }
+});
+
+//toggle cells on click
 canvas.addEventListener('mousedown', function(event) {
     const rect = canvas.getBoundingClientRect();
     const x = event.clientX - rect.left;
@@ -20,14 +43,6 @@ canvas.addEventListener('mousedown', function(event) {
     render();
 });
 
-for (let i = 0; i < numRows; i++) {
-    let row = [];
-    for (let j = 0; j < numCols; j++) {
-        row.push(Math.round(Math.random()));
-    }
-    grid.push(row);
-}
-
 function render() {
     for (let i = 0; i < numRows; i++) {
         for (let j = 0; j < numCols; j++) {
@@ -39,30 +54,33 @@ function render() {
             ctx.fillRect(j * gridSize, i * gridSize, gridSize, gridSize);
         }
     }
+    setTimeout(update, 100);
 }
 
 function update() {
-    let newGrid = [];
+    if (isRunning){
+        let newGrid = [];
 
-    for (let i = 0; i < numRows; i++) {
-        let row = [];
-        for (let j = 0; j < numCols; j++) {
-            let numNeighbors = countNeighbors(i, j);
-            let isAlive = grid[i][j];
+        for (let i = 0; i < numRows; i++) {
+            let row = [];
+            for (let j = 0; j < numCols; j++) {
+                let numNeighbors = countNeighbors(i, j);
+                let isAlive = grid[i][j];
 
-            if (isAlive && (numNeighbors < 2 || numNeighbors > 3)) {
-                row.push(0);
-            } else if (!isAlive && numNeighbors === 3) {
-                row.push(1);
-            } else {
-                row.push(isAlive);
+                if (isAlive && (numNeighbors < 2 || numNeighbors > 3)) {
+                    row.push(0);
+                } else if (!isAlive && numNeighbors === 3) {
+                    row.push(1);
+                } else {
+                    row.push(isAlive);
+                }
             }
+            newGrid.push(row);
         }
-        newGrid.push(row);
+        grid = newGrid;
+        render();
+        
     }
-    grid = newGrid;
-    render();
-    setTimeout(update, 100);
 }
   
 function countNeighbors(row, col) {
@@ -84,5 +102,4 @@ function countNeighbors(row, col) {
     return count;
 }
 
-update();
-  
+render();

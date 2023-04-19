@@ -7,8 +7,6 @@ const numCols = canvas.width / gridSize;
 
 let grid = [];
 
-let outstanding = 0;
-
 //randomly populate grid
 for (let i = 0; i < numRows; i++) {
     let row = [];
@@ -17,6 +15,17 @@ for (let i = 0; i < numRows; i++) {
     }
     grid.push(row);
 }
+
+let outstanding = 0;
+const inc1 = document.getElementById('inc1');
+inc1.addEventListener('click', function() {
+    outstanding = 1;
+});
+
+const inc23 = document.getElementById('inc23');
+inc23.addEventListener('click', function() {
+    outstanding = 23;
+});
 
 let isRunning = false;
 const startStopButton = document.getElementById('startStopButton');
@@ -59,7 +68,7 @@ function render() {
 }
 
 function update() {
-    if (isRunning){
+    if(isRunning){
         let newGrid = [];
 
         for (let i = 0; i < numRows; i++) {
@@ -80,8 +89,12 @@ function update() {
         }
         grid = newGrid;
         render();
-        if(outstanding === 0){
+        console.log(outstanding);
+        if(outstanding == 0){
             setTimeout(update, 100);
+        } else {
+            outstanding--;
+            update();
         }
     }
 }

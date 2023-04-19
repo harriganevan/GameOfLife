@@ -6,8 +6,9 @@ const numRows = canvas.height / gridSize;
 const numCols = canvas.width / gridSize;
 
 let grid = [];
+let gridCopy = []; //stores copy of random grid - doesnt need to store other grids because start positions are predetermined
 
-let state = 'random';
+let state = '';
 const drop = document.getElementById("state");
 drop.addEventListener('change', function(){
     state = drop.value;
@@ -23,6 +24,7 @@ function random() {
         }
         grid.push(row);
     }
+    gridCopy = grid; //store copy for reset
     render();
 }
 
@@ -118,6 +120,22 @@ function pulsar() {
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
     render();
 }
+
+const reset = document.getElementById('reset');
+reset.addEventListener('click', function() {
+    if(state == 'random'){
+        grid = gridCopy;
+    }
+    else if(state == 'beehive'){
+        beehive();
+    }
+    else if(state == 'toad'){
+        toad();
+    }
+    else if(state == 'pulsar'){
+        pulsar();
+    }
+});
 
 let outstanding = 0;
 const inc1 = document.getElementById('inc1');

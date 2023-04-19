@@ -7,6 +7,8 @@ const numCols = canvas.width / gridSize;
 
 let grid = [];
 
+let outstanding = 0;
+
 //randomly populate grid
 for (let i = 0; i < numRows; i++) {
     let row = [];
@@ -54,7 +56,6 @@ function render() {
             ctx.fillRect(j * gridSize, i * gridSize, gridSize, gridSize);
         }
     }
-    setTimeout(update, 100);
 }
 
 function update() {
@@ -79,7 +80,9 @@ function update() {
         }
         grid = newGrid;
         render();
-        
+        if(outstanding === 0){
+            setTimeout(update, 100);
+        }
     }
 }
   

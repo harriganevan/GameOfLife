@@ -2,6 +2,6 @@
     text-align: center;
 }
 
-#pause, #inc1, #inc23, #reset {
+#pause, #inc1, #inc23, #reset, #drop {
     float: left;
 }

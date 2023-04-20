@@ -4,32 +4,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style.css">
     <title>The Game of Life</title>
 </head>
 <body>
+    <div>
+        <h1 id="top_title">Game of Life</h1>
+        <div id="drop">
+            <select name="state" id="state">
+                <option value="">(Select Grid Start)</option>
+                <option value="random">Random</option>
+                <option value="beehive">Beehive</option>
+                <option value="toad">Toad</option>
+                <option value="pulsar">Pulsar</option>
+            </select>
+        </div>
 
-    <div id="drop">
-        <select name="state" id="state">
-            <option value="">(Select Grid Start)</option>
-            <option value="random">Random</option>
-            <option value="beehive">Beehive</option>
-            <option value="toad">Toad</option>
-            <option value="pulsar">Pulsar</option>
-        </select>
+        <div id="pause">
+            <button id="startStopButton" type="button">Start</button></br>
+            <button id="inc1" type="button">Increment 1 Generation</button></br>
+            <button id="inc23" type="button">Increment 23 Generations</button></br>
+            <button id="reset" type="button">Reset</button>
+        </div>
+        
+        <div id="container">
+            <canvas id="canvas" width="500" height="500"></canvas>
+        </div>
     </div>
-
-    <div id="pause">
-        <button id="startStopButton" type="button">Start</button></br>
-        <button id="inc1" type="button">Increment 1 Generation</button></br>
-        <button id="inc23" type="button">Increment 23 Generations</button></br>
-        <button id="reset" type="button">Reset</button>
-    </div>
-    
-    <div id="container">
-        <canvas id="canvas" width="500" height="500"></canvas>
-    </div>
-    
     <script src="GameOfLife.js"></script>
 </body>
 </html>

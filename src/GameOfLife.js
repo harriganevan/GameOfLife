@@ -177,16 +177,19 @@ canvas.addEventListener('mousedown', function(event) {
 });
 
 function render() {
+    let totalLife = 0;
     for (let i = 0; i < numRows; i++) {
         for (let j = 0; j < numCols; j++) {
             if (grid[i][j] === 0) {
                 ctx.fillStyle = 'black';
             } else {
                 ctx.fillStyle = 'white';
+                totalLife++;
             }
             ctx.fillRect(j * gridSize, i * gridSize, gridSize, gridSize);
         }
     }
+    document.getElementById('score').innerHTML = totalLife;
 }
 
 function update() {

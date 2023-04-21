@@ -2,30 +2,42 @@
     text-align: center;
     margin: 0 auto;
     width: 500px; /* or the desired width of the container */
-  }
-  
-  #pause, #inc1, #inc23, #reset, #drop {
+}
+
+#pause, #inc1, #inc23, #reset, #drop {
     float: left;
-  }
-  
-  #canvas {
+}
+
+#canvas {
     display: block;
     margin: 0 auto;
-  }
-  button{
+}
+
+button{
     background-color: #008CBA;
     transition-duration: 0.4s;
     border-radius: 8px;
-  }
-  button:hover{
+}
+
+button:hover{
     border-radius: 8px;
     background-color: white;
     color: black;
     border: 2px solid #008CBA;
-  }
-  body{
+}
+
+body{
     background-color: lightblue;
-  }
-  #top_title{
-        text-align: center;
-  }
+}
+
+#top_title{
+    text-align: center;
+}
+
+#score {
+    position: absolute;
+    top: 1%;
+    right: 2%;
+    color: black;
+    font-size: 35pt;
+}

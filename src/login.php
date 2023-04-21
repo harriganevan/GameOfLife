@@ -4,7 +4,7 @@ $username = $_POST['uname'];
 $password = $_POST['psw'];
 
 // check if the user exists
-$users = file('users.txt', FILE_IGNORE_NEW_LINES);
+$users = file('accounts.txt', FILE_IGNORE_NEW_LINES);
 foreach ($users as $user) {
     list($existing_username, $existing_password) = explode('|', $user);
     if ($username === $existing_username && $password === $existing_password) {
